@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produits{% endblock %}
+
+{% block body %}
+   <div class="container">
+       <div class="jumbotron">
+           <h2>{% trans %}Liste des produits{% endtrans %}</h2>
+           <div class="jumbotron">
+               <table class="table table-dark">
+
+                   <thead>
+                   <tr>
+                       <th scope="col">Photo</th>
+                       <th scope="col">{% trans %}Nom{% endtrans %}</th>
+                       <th scope="col">{% trans %}Quantité{% endtrans %}</th>
+                       <th scope="col">{% trans %}Prix{% endtrans %}</th>
+                   </tr>
+                   </thead>
+                   <tbody>
+                   {% for produit in produits %}
+                       <tr>
+                           <td><img src="{{ asset('assets/images/' ~ produit.photo) }}" class="card-img-top" alt="Card-image tap" style="width: 5rem;"/></td>
+                           <td><a href="ficheProduit/{{ produit.id }}" class="card-link">{{produit.nom}}</a></td>
+                           <td>{{produit.quantite}} €</td>
+                           <td>{{ produit.prix }}</td>
+                       </tr>
+                   {% endfor %}
+                   </tbody>
+               </table>
+           </div>
+       </div>
+
+       <div class="jumbotron">
+           <h2>{% trans %}Ajouter un produit{% endtrans %}</h2>
+           {{ form(formProduits) }}
+       </div>
+   </div>
+{% endblock %}
